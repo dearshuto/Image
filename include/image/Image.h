@@ -1,0 +1,81 @@
+//
+//  Image.h
+//  RayTracing
+//
+//  Created by Shuto Shikama on 2015/08/23.
+//  Copyright (c) 2015年 Shuto Shikama. All rights reserved.
+//
+
+#ifndef __RayTracing__Image__
+#define __RayTracing__Image__
+
+#include <string>
+
+namespace fj {
+    class NormalizedColor;
+    class Image;
+}
+
+/**
+ * 画像をあらわすスーパークラス
+ */
+class fj::Image
+{
+public:
+    Image() = default;
+    virtual ~Image() = default;
+    
+    Image(const fj::Image& other) = delete;
+    Image& operator=(const fj::Image& other) = delete;
+    
+#ifndef _WIN32
+    Image(fj::Image&& other) = default;
+    Image& operator&&(fj::Image&& image) = delete;
+#endif
+    
+    /**
+     * ファイルシステムのパスを指定して画像を読み込む
+     */
+    virtual bool loadFromFile(const std::string& filename) = 0;
+    
+    /**
+     * ファイルシステムのパスを指定して画像を読み込む. "filename"形式対応用.
+     */
+    bool loadFromFile(std::string&& filename);
+    
+    /**
+     * ファイルシステムのパスを指定して画像を保存する.
+     */
+    virtual bool saveToFile(const std::string& filename)const = 0;
+    
+    /**
+     * ファイルシステムのパスを指定して画像を保存する. "filename"形式対応用.
+     */
+    bool saveToFile(std::string&& filename)const;
+    
+// getters & setters
+public:
+    
+    /**
+     * 画像の横幅を取得する
+     */
+    virtual int getWidth()const = 0;
+    
+    /**
+     * 画像の縦幅を取得する
+     */
+    virtual int getHeight()const = 0;
+    
+    /**
+     * 画像の(x, y)の位置にRGBをセットする
+     */
+    void setAt(const int x, const int y, const int R, const int G, const int B, const int A) ;
+    
+    /**
+     * 画像の(x, y)の位置にfj::NormalizedColorをセットする
+     */
+    virtual void setAt(const int x, const int y, const fj::NormalizedColor& color) = 0;
+
+};
+
+#endif /* defined(__RayTracing__Image__) */
