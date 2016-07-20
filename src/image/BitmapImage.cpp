@@ -20,8 +20,8 @@ namespace  {
     constexpr int G = 1;
     constexpr int B = 2;
 
-    constexpr fj::Scalar TO_255_RATE = fj::Scalar(255);
-    constexpr fj::Scalar TO_NORMALIZE = 1 / TO_255_RATE;
+    constexpr double TO_255_RATE = 255.0;
+    constexpr double TO_NORMALIZE = 1 / TO_255_RATE;
 
     constexpr int kRGB = 3;
     constexpr int k8bitRGB = 24;
@@ -415,9 +415,9 @@ fj::BitmapImage::BitmapColorData::BitmapColorData(const int width, const int hei
 fj::NormalizedColor fj::BitmapImage::BitmapColorData::getColorAt(const int offset)const
 {
     const ColorContainer& kColorData = getColorContainer();
-    const fj::Scalar kR = kColorData[offset    ] * TO_NORMALIZE;
-    const fj::Scalar kG = kColorData[offset + 1] * TO_NORMALIZE;
-    const fj::Scalar kB = kColorData[offset + 2] * TO_NORMALIZE;
+    const double kR = kColorData[offset    ] * TO_NORMALIZE;
+    const double kG = kColorData[offset + 1] * TO_NORMALIZE;
+    const double kB = kColorData[offset + 2] * TO_NORMALIZE;
 
     return fj::NormalizedColor(kR, kG, kB);
 }

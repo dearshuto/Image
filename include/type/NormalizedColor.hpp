@@ -13,7 +13,6 @@
 #include <functional>
 
 namespace fj {
-    typedef double Scalar;
     class NormalizedColor;
 }
 
@@ -30,7 +29,7 @@ public:
     static fj::NormalizedColor BLUE;
 public:
     NormalizedColor()
-    : NormalizedColor( fj::Scalar(0), fj::Scalar(0), fj::Scalar(0))
+    : NormalizedColor( 0.0, 0.0, 0.0)
     {
         
     }
@@ -43,14 +42,14 @@ public:
         // 初期化も移譲しているのでclamped()をよぶ必要はない
     }
     
-    NormalizedColor(const fj::Scalar& r, const fj::Scalar& g, const fj::Scalar& b)
-    : NormalizedColor(r, g, b, fj::Scalar(1))
+    NormalizedColor(const double r, const double g, const double b)
+    : NormalizedColor(r, g, b, 1.0)
     {
         // 初期化も移譲しているのでclamped()をよぶ必要はない
     }
     
-    NormalizedColor(const fj::Scalar& r, const fj::Scalar& g, const fj::Scalar& b, const fj::Scalar& a)
-    : m_value(std::array<fj::Scalar, 4>{{r, g, b, a}})
+    NormalizedColor(const double r, const double g, const double b, const double a)
+    : m_value(std::array<double, 4>{{r, g, b, a}})
     {
         clamped();
     }
@@ -67,10 +66,10 @@ public:
     
     NormalizedColor operator+(const fj::NormalizedColor& other)const
     {
-        const fj::Scalar kR = this->r() + other.r();
-        const fj::Scalar kG = this->g() + other.g();
-        const fj::Scalar kB = this->b() + other.b();
-        const fj::Scalar kA = this->a() + other.a();
+        const double kR = this->r() + other.r();
+        const double kG = this->g() + other.g();
+        const double kB = this->b() + other.b();
+        const double kA = this->a() + other.a();
         NormalizedColor returnColor(kR, kG, kB, kA);
         
         returnColor.clamped();
@@ -80,10 +79,10 @@ public:
     
     NormalizedColor operator-(const fj::NormalizedColor& other)const
     {
-        const fj::Scalar kR = this->r() - other.r();
-        const fj::Scalar kG = this->g() - other.g();
-        const fj::Scalar kB = this->b() - other.b();
-        const fj::Scalar kA = this->a() - other.a();
+        const double kR = this->r() - other.r();
+        const double kG = this->g() - other.g();
+        const double kB = this->b() - other.b();
+        const double kA = this->a() - other.a();
         NormalizedColor returnColor(kR, kG, kB, kA);
         
         returnColor.clamped();
@@ -95,12 +94,12 @@ public:
     NormalizedColor operator-()const = delete;
     NormalizedColor operator-() = delete;
     
-    NormalizedColor operator*(const fj::Scalar& num)const
+    NormalizedColor operator*(const double num)const
     {
-        const fj::Scalar kR = this->r() * num;
-        const fj::Scalar kG = this->g() * num;
-        const fj::Scalar kB = this->b() * num;
-        const fj::Scalar kA = this->a() * num;
+        const double kR = this->r() * num;
+        const double kG = this->g() * num;
+        const double kB = this->b() * num;
+        const double kA = this->a() * num;
         NormalizedColor returnColor(kR, kG, kB, kA);
         
         returnColor.clamped();
@@ -108,9 +107,9 @@ public:
         return returnColor;
     }
     
-    NormalizedColor operator/(const fj::Scalar& num)const
+    NormalizedColor operator/(const double num)const
     {
-        return this->operator*(fj::Scalar(1) / num);
+        return this->operator*(1.0 / num);
     }
     
     NormalizedColor& operator+=(const fj::NormalizedColor& other)
@@ -137,7 +136,7 @@ public:
         return std::ref(*this);
     }
 
-    NormalizedColor& operator*=(const fj::Scalar& num)
+    NormalizedColor& operator*=(const double num)
     {
         this->r() *= num;
         this->g() *= num;
@@ -149,17 +148,17 @@ public:
         return std::ref(*this);
     }
 
-    NormalizedColor& operator/=(const fj::Scalar& num)
+    NormalizedColor& operator/=(const double num)
     {
-        return this->operator*=(fj::Scalar(1) / num);
+        return this->operator*=(1.0 / num);
     }
 
-    fj::Scalar& operator[](const int index)
+    double operator[](const int index)
     {
         return std::ref(m_value[index]);
     }
 
-    const fj::Scalar& operator[](const int index)const
+    double operator[](const int index)const
     {
         return std::cref(m_value[index]);
     }
@@ -175,48 +174,48 @@ private:
 
 public:
     
-    fj::Scalar& r()
+    double& r()
     {
         return std::ref(m_value[0]);
     }
 
-    fj::Scalar& g()
+    double& g()
     {
         return std::ref(m_value[1]);
     }
 
-    fj::Scalar& b()
+    double& b()
     {
         return std::ref(m_value[2]);
     }
 
-    fj::Scalar& a()
+    double& a()
     {
         return std::ref(m_value[3]);
     }
 
-    const fj::Scalar& r()const
+    double r()const
     {
         return std::cref(m_value[0]);
     }
     
-    const fj::Scalar& g()const
+    double g()const
     {
         return std::cref(m_value[1]);
     }
     
-    const fj::Scalar& b()const
+    double b()const
     {
         return std::cref(m_value[2]);
     }
     
-    const fj::Scalar& a()const
+    double a()const
     {
         return std::cref(m_value[3]);
     }
 
 private:
-    std::array<fj::Scalar, 4> m_value;
+    std::array<double, 4> m_value;
 };
 
 #endif /* NormalizedColor_hpp */

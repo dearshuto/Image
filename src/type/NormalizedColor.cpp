@@ -20,13 +20,13 @@ fj::NormalizedColor fj::NormalizedColor::BLUE = fj::NormalizedColor(0, 0, 1, 1);
 
 void fj::NormalizedColor::clamp(const int index)
 {
-    fj::Scalar& value = this->operator[](index);
+    auto value = this->operator[](index);
     
     // under clamp
-    value = std::max<fj::Scalar>(fj::Scalar(0), value);
+    value = std::max<double>(0.0, value);
     
     //over clamp
-    value = std::min<fj::Scalar>(value, fj::Scalar(1));
+    value = std::min<double>(value, 1.0);
 }
 
 void fj::NormalizedColor::clamped()
@@ -39,19 +39,19 @@ void fj::NormalizedColor::clamped()
 
 bool fj::NormalizedColor::isZero()const
 {
-    if (r() != fj::Scalar(0))
+    if (r() != 0.0)
     {
         return false;
     }
-    if (g() != fj::Scalar(0))
+    if (g() != 0.0)
     {
         return false;
     }
-    if (b() != fj::Scalar(0))
+    if (b() != 0.0)
     {
         return false;
     }
-    if (a() != fj::Scalar(0))
+    if (a() != 0.0)
     {
         return false;
     }
