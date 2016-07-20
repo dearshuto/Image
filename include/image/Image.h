@@ -72,6 +72,11 @@ public:
     void setAt(const int x, const int y, const int R, const int G, const int B, const int A) ;
     
     /**
+     * 画像の(x, y)の位置の色情報をfj::NormalizedColorとして取得する
+     */
+    virtual fj::NormalizedColor getAt(const unsigned int x, const unsigned int y)const = 0;
+    
+    /**
      * 画像の(x, y)の位置にfj::NormalizedColorをセットする
      */
     virtual void setAt(const int x, const int y, const fj::NormalizedColor& color) = 0;

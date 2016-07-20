@@ -42,7 +42,7 @@ public:
     BitmapImage(const int width, const int height);
     
     void setAt(const int x, const int y, const fj::NormalizedColor& color)override;
-    fj::NormalizedColor getAt(const int x, const int y)const;
+    fj::NormalizedColor getAt(const unsigned int x, const unsigned int y)const override;
     
     bool loadFromFile(const std::string& filename) override;
     bool saveToFile(const std::string& filename)const override;

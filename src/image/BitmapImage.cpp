@@ -253,7 +253,7 @@ void fj::BitmapImage::setAt(const int x, const int y, const fj::NormalizedColor 
     m_colorData->setColorAt(kDataOffset, color);
 }
 
-fj::NormalizedColor fj::BitmapImage::getAt(const int x, const int y)const
+fj::NormalizedColor fj::BitmapImage::getAt(const unsigned int x, const unsigned int y)const
 {
     const int kDataOffset = convert2DPositionToIntOffset(x, y);
 
