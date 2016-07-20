@@ -8,16 +8,24 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-FILE(GLOB_RECURSE algorithms
+FILE(GLOB_RECURSE image_files
 	${CMAKE_SOURCE_DIR}/include/image/*.h*
 	${CMAKE_SOURCE_DIR}/include/type/*.h*
 	${CMAKE_SOURCE_DIR}/src/image/*.cpp
 	${CMAKE_SOURCE_DIR}/src/type/*.cpp
 )
-#SOURCE_GROUP(external_math FILES ${external_math_lib})
 
-add_library(image STATIC
-	${algorithms}
+FILE(GLOB_RECURSE type_files
+	${CMAKE_SOURCE_DIR}/include/type/*.h*
+	${CMAKE_SOURCE_DIR}/src/type/*.cpp
 )
 
-add_subdirectory(Examples)
+SOURCE_GROUP(image FILES ${image_files})
+SOURCE_GROUP(type FILES ${type_files})
+
+add_library(image STATIC
+	${image_files}
+	${type_files}
+)
+
+add_subdirectory(examples)
