@@ -16,7 +16,7 @@
 int main(int argc, const char * argv[])
 {
     uint32_t r;
-    fj::BitmapImage image(480, 640);
+    fj::BitmapImage image(640, 480);
     
     for (int i = 0; i < image.getWidth(); i++)
     {
@@ -24,7 +24,7 @@ int main(int argc, const char * argv[])
         {
             r = r  * 69069 + 255;
             const double kColor = static_cast<double>(r % 255) / 255;
-            image.setAt(i, j, fj::NormalizedColor(kColor, 0, 0));
+            image.setAt(i, j, fj::NormalizedColor(kColor, kColor, kColor));
         }
     }
     
