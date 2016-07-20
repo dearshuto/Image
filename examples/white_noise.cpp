@@ -18,7 +18,7 @@ int main(int argc, const char * argv[])
 // 線形代入法を利用して擬似乱数を発生させる
 // 線形代入法を実現するためにはmod計算が途中で必要になるが、32bitのint型のオーバーフローを利用することでmod計算としている。
     
-    uint32_t r;
+    uint32_t r = 0;
     fj::BitmapImage image(640, 480);
     
     for (int i = 0; i < image.getWidth(); i++)
