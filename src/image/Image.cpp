@@ -6,6 +6,8 @@
 //  Copyright (c) 2015年 Shuto Shikama. All rights reserved.
 //
 
+#include <cmath>
+
 #include <type/NormalizedColor.hpp>
 #include <image/Image.h>
 
@@ -25,12 +27,15 @@ bool fj::Image::saveToFile(std::string &&filename)const
 
 void fj::Image::drawCircle(const unsigned int x, const unsigned int y, const int radius, const fj::NormalizedColor& color)
 {
-    const unsigned int kLeft = x - radius;
-    const unsigned int kUp = y - radius;
+// 中心が(x, y)で一辺が2*radiusの正方形の内部にあるピクセルを走査し、円の内部であればcolorで塗る
     
-    for (int x = kLeft; x < radius*2; x++){
-        for (int y = kUp; y < kUp; y++) {
-            setAt(x, y, color);
+    for (int i = -radius; i < radius; i++){
+        for (int j = -radius; j < radius; j++) {
+            const unsigned int kDistance = std::sqrt( std::pow(i, 2) + std::pow(j, 2));
+            if (kDistance < radius)
+            {
+                setAt(x+i, y+j, color);
+            }
         }
     }
 }
