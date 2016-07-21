@@ -53,6 +53,10 @@ public:
      */
     bool saveToFile(std::string&& filename)const;
     
+    void drawCircle(const unsigned int x, const unsigned int y, const int radius, const fj::NormalizedColor& color);
+    
+    bool isActiveAt(const int x, const int y)const;
+    
 // getters & setters
 public:
     
