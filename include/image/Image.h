@@ -22,7 +22,18 @@ namespace fj {
 class fj::Image
 {
 public:
-    Image() = default;
+    enum class CoordY
+    {
+        kUp,
+        kDown
+    };
+public:
+    Image()
+    : m_coord(CoordY::kDown)
+    {
+        
+    }
+    
     virtual ~Image() = default;
     
     Image(const fj::Image& other) = delete;
@@ -89,7 +100,17 @@ public:
      * 画像の(x, y)の位置にfj::NormalizedColorをセットする
      */
     virtual void setAt(const int x, const int y, const fj::NormalizedColor& color) = 0;
+    
+    /**
+     * yアップかyダウンか選択する
+     */
+    void setCoordY(const fj::Image::CoordY& coord)
+    {
+        m_coord = coord;
+    }
 
+private:
+    fj::Image::CoordY m_coord;
 };
 
 #endif /* defined(__RayTracing__Image__) */

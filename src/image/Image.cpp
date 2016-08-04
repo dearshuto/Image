@@ -71,5 +71,12 @@ bool fj::Image::isActiveAt(const int x, const int y)const
 
 void fj::Image::setAt(const int x, const int y, const int R, const int G, const int B, const int A)
 {
-    setAt(x, y, fj::NormalizedColor(R, G, B, A));
+    if (m_coord == CoordY::kDown)
+    {
+        setAt(x, getHeight() - y, fj::NormalizedColor(R, G, B, A));
+    }
+    else
+    {
+        setAt(x, y, fj::NormalizedColor(R, G, B, A));
+    }
 }
