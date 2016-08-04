@@ -53,6 +53,11 @@ public:
      */
     bool saveToFile(std::string&& filename)const;
     
+    /**
+     * すべてのピクセルを同じ色で塗りつぶす
+     */
+    void fillIn(const fj::NormalizedColor& color);
+    
     void drawCircle(const unsigned int x, const unsigned int y, const int radius, const fj::NormalizedColor& color);
     
     bool isActiveAt(const int x, const int y)const;
