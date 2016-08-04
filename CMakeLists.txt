@@ -7,19 +7,19 @@ add_definitions("-I ${CMAKE_SOURCE_DIR}/include")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
-include_directories(${CMAKE_SOURCE_DIR}/include)
-include_directories(${CMAKE_SOURCE_DIR}/external/jpeg)
+include_directories(${CMAKE_CURRENT_LIST_DIR}/include)
+include_directories(${CMAKE_CURRENT_LIST_DIR}/external/jpeg)
 
 FILE(GLOB_RECURSE image_files
-	${CMAKE_SOURCE_DIR}/include/image/*.h*
-	${CMAKE_SOURCE_DIR}/include/type/*.h*
-	${CMAKE_SOURCE_DIR}/src/image/*.cpp
-	${CMAKE_SOURCE_DIR}/src/type/*.cpp
+	${CMAKE_CURRENT_LIST_DIR}/include/image/*.h*
+	${CMAKE_CURRENT_LIST_DIR}/include/type/*.h*
+	${CMAKE_CURRENT_LIST_DIR}/src/image/*.cpp
+	${CMAKE_CURRENT_LIST_DIR}/src/type/*.cpp
 )
 
 FILE(GLOB_RECURSE type_files
-	${CMAKE_SOURCE_DIR}/include/type/*.h*
-	${CMAKE_SOURCE_DIR}/src/type/*.cpp
+	${CMAKE_CURRENT_LIST_DIR}/include/type/*.h*
+	${CMAKE_CURRENT_LIST_DIR}/src/type/*.cpp
 )
 
 SOURCE_GROUP(image FILES ${image_files})
