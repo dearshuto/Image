@@ -2,5 +2,8 @@ build/*
 doc/*
 bin/*
 lib/*
-
+*.jpg
+*.jpeg
+*.png
+*.bmp
 .DS_Store

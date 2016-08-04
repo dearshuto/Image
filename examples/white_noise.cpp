@@ -12,6 +12,7 @@
 
 #include <image/BitmapImage.hpp>
 #include <type/NormalizedColor.hpp>
+#include "image/JpegImage.hpp"
 
 int main(int argc, const char * argv[])
 {
@@ -20,6 +21,9 @@ int main(int argc, const char * argv[])
     
     uint32_t r = 0;
     fj::BitmapImage image(640, 480);
+    fj::JpegImage jpeg;
+    
+    jpeg.initialize(640, 480);
     
     for (int i = 0; i < image.getWidth(); i++)
     {
@@ -27,11 +31,15 @@ int main(int argc, const char * argv[])
         {
             r = r  * 69069 + 255;
             const double kColor = static_cast<double>(r % 255) / 255;
-            image.setAt(i, j, fj::NormalizedColor(kColor, kColor, kColor));
+            const fj::NormalizedColor kNormalizedColor(kColor, kColor, kColor);
+            
+            image.setAt(i, j, kNormalizedColor);
+            jpeg.setAt(i, j, kNormalizedColor);
         }
     }
     
     image.saveToFile("white_noise.bmp");
+    jpeg.saveToFile("white_noise.jpg");
     
     return EXIT_SUCCESS;
 }
