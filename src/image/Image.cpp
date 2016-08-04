@@ -43,13 +43,15 @@ void fj::Image::drawCircle(const unsigned int x, const unsigned int y, const int
     
     for (int i = -radius; i < radius; i++){
         for (int j = -radius; j < radius; j++) {
+            const int kX = x + i;
+            const int kY = y + j;
             
-            if (isActiveAt(i, j))
+            if (isActiveAt(kX, kY))
             {
                 const unsigned int kDistance = std::sqrt( std::pow(i, 2) + std::pow(j, 2));
                 if (kDistance < radius)
                 {
-                    setAt(x+i, y+j, color);
+                    setAt(kX, kY, color);
                 }
             }
             
