@@ -6,4 +6,6 @@ lib/*
 *.jpeg
 *.png
 *.bmp
+*.py.swp
+*.pyc
 .DS_Store
