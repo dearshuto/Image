@@ -1,4 +1,5 @@
 import os
+import sys
 import subprocess
 import shutil
 import platform
@@ -8,11 +9,14 @@ def libjpeg_setting():
     me = platform.system()
     rootDirectory = os.getcwd()
     os.system('git submodule update --init --recursive')
-    
     # libjpeg setting
-    if not os.path.exists('external/jpeg/jconfig.h'):
+
+    #
+    myDirectory = os.path.realpath(os.path.dirname(sys.argv[0]))
+
+    if not os.path.exists(myDirectory+'/external/jpeg/jconfig.h'):
         print 'configure libjpeg'
-        os.chdir("external/jpeg")
+        os.chdir(myDirectory + "/external/jpeg")
         if me == 'Windows':
                 shutil.copyfile("jconfig.vc", "jconfig.h") 
         else:
