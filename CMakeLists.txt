@@ -3,7 +3,12 @@ PROJECT(Image)
 cmake_minimum_required(VERSION 3.0)
 
 # インクルードフォルダを相対パスの検索対象に設定する
+IF(WIN32)
+add_definitions("/I${CMAKE_SOURCE_DIR}/include")
+ELSE()
 add_definitions("-I ${CMAKE_SOURCE_DIR}/include")
+ENDIF()
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
